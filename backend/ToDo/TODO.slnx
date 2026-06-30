@@ -2,5 +2,7 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
   </Folder>
+  <Project Path="TODO.BLL/TODO.BLL.csproj" Id="ee8aa01d-cdcb-4334-b270-4828d479cd08" />
+  <Project Path="ToDo.DAL/ToDo.DAL.csproj" Id="34ec6464-f3be-4222-be5e-695c959760a3" />
   <Project Path="TODO.Interfaces/TODO.Interfaces.csproj" />
 </Solution>

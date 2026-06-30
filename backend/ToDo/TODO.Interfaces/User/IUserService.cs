@@ -4,8 +4,8 @@ namespace TODO.Interfaces.User;
 
 public interface IUserService
 {
-    Task<GetUserDTO?> GetByIdAsync(Guid userId);
-    Task<bool> UpdateProfileAsync(Guid userId, UpdateProfileDTO dto);
-    Task<bool> ChangePasswordAsync(Guid userId, ChangePasswordDTO dto);
-    Task<bool> DeleteAsync(Guid userId);
+    Task<GetUserDTO> GetByIdAsync(Guid userId);
+    Task UpdateProfileAsync(Guid userId, UpdateProfileDTO dto);
+    Task ChangePasswordAsync(Guid userId, ChangePasswordDTO dto);
+    Task DeleteAsync(Guid userId);
 }

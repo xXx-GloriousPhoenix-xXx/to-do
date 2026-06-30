@@ -15,14 +15,8 @@ public class BaseRepository<T>(TodoDBContext context)
         return entity;
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(T entity)
     {
-        var entity = await _dbSet.FindAsync(id);
-        if (entity is null)
-        {
-            return false;
-        }
-
         _dbSet.Remove(entity);
         var affected = await _context.SaveChangesAsync();
         return affected > 0;

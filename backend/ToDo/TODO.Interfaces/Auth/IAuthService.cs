@@ -5,7 +5,7 @@ namespace TODO.Interfaces.Auth;
 
 public interface IAuthService
 {
-    Task SignUpAsync(SignUpDTO dto);
+    Task<TokenResponse> SignUpAsync(SignUpDTO dto);
     Task<TokenResponse> SignInAsync(SignInDTO dto);
     Task SignOutAsync(string refreshToken);
     Task<TokenResponse> RefreshAsync(string refreshToken);
