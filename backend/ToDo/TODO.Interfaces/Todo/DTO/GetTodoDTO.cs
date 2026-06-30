@@ -7,4 +7,5 @@ public record GetTodoDTO(
     string Title,
     string Description,
     string Category,
-    DateTime CompleteUntil);
+    DateTime CompleteUntil,
+    bool IsCompleted);
