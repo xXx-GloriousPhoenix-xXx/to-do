@@ -10,7 +10,10 @@ public class TodoProfile : Profile
     public TodoProfile()
     {
         CreateMap<CreateTodoDTO, TodoEntity>();
-        CreateMap<TodoEntity, GetTodoDTO>();
+
+        CreateMap<TodoEntity, GetTodoDTO>()
+            .ForMember(dest => dest.AuthorUsername,
+                       opt => opt.MapFrom(src => src.Author!.Username));
 
         CreateMap<UpdateTodoDTO, TodoEntity>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));

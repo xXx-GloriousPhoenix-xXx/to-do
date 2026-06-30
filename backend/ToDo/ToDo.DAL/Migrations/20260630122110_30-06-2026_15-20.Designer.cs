@@ -12,8 +12,8 @@ using ToDo.DAL;
 namespace ToDo.DAL.Migrations
 {
     [DbContext(typeof(TodoDBContext))]
-    [Migration("20260630114800_30-06-2026_14-46")]
-    partial class _30062026_1446
+    [Migration("20260630122110_30-06-2026_15-20")]
+    partial class _30062026_1520
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

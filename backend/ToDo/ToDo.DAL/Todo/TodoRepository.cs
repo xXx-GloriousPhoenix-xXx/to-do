@@ -26,6 +26,7 @@ public class TodoRepository(TodoDBContext context)
     {
         var query = _context.Todos
             .AsNoTracking()
+            .Include(td => td.Author)
             .Where(td => td.AuthorId == userId);
 
         if (filter is not null)

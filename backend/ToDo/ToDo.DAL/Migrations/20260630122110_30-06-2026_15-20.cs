@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ToDo.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class _30062026_1446 : Migration
+    public partial class _30062026_1520 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
