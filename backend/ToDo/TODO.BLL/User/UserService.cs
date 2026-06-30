@@ -25,6 +25,7 @@ public class UserService(
             throw new UnauthorizedException("Current password is incorrect");
 
         user.PasswordHash = _hasher.Hash(dto.NewPassword);
+        user.UpdatedAt = DateTime.UtcNow;
         await _userRepository.UpdateAsync(user);
     }
 
@@ -67,6 +68,7 @@ public class UserService(
             entity.Email = dto.Email;
         }
 
+        entity.UpdatedAt = DateTime.UtcNow;
         await _userRepository.UpdateAsync(entity);
     }
 }

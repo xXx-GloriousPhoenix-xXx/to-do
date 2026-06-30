@@ -82,6 +82,7 @@ public class TodoService(
             throw new ForbiddenException("You don't have access to this ToDo");
 
         _mapper.Map(dto, entity);
+        entity.UpdatedAt = DateTime.UtcNow;
         await _todoRepository.UpdateAsync(entity);
     }
 }
