@@ -4,7 +4,7 @@ using TODO.Interfaces.Todo.Entity;
 using TODO.Interfaces.User.Entities;
 
 namespace ToDo.DAL;
-public class TodoDBContext : DbContext
+public class TodoDBContext(DbContextOptions<TodoDBContext> options) : DbContext(options)
 {
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<TodoEntity> Todos { get; set; }

@@ -427,3 +427,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Appsettings ignore
+appsettings.json
+appsettings.*.json
+!appsettings.Example.json
