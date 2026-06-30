@@ -14,6 +14,8 @@ builder.Services.AddSwaggerDocs();
 
 var app = builder.Build();
 
+app.UseExceptionHandling();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
