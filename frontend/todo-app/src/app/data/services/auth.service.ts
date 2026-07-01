@@ -35,7 +35,7 @@ export class AuthService {
     signOut() {
         return this.http.post<void>(
             `${this.baseUrl}/sign-out`,
-            JSON.stringify(this.refreshToken),
+            JSON.stringify(this.refreshToken()),
             { headers: { 'Content-Type': 'application/json' }
         })
         .pipe(tap(() => this.clearToken()));
@@ -44,7 +44,7 @@ export class AuthService {
     refresh() {
         return this.http.post<TokenResponse>(
             `${this.baseUrl}/refresh`,
-            JSON.stringify(this.refreshToken),
+            JSON.stringify(this.refreshToken()),
             { headers: { 'Content-Type': 'application/json' }
         })
         .pipe(tap(response => this.setToken(response)));
@@ -68,7 +68,7 @@ export class AuthService {
         this.refreshToken.set(response.refreshToken);
     }
 
-    private clearToken() {
+    clearToken() {
         this.cookies.delete(this.ACCESS_TOKEN_KEY, '/');
         this.cookies.delete(this.REFRESH_TOKEN_KEY, '/');
 

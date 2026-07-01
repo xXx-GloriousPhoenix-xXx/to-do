@@ -6,7 +6,8 @@ import { WorkspacePageComponent } from './pages/workspace-page/workspace-page.co
 import { WorkspaceOutletComponent } from './common-ui/outlets/workspace-outlet/workspace-outlet.component';
 import { TodoPageComponent } from './pages/todo-page/todo-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
-import { authGuard } from './common-ui/auth-guard';
+import { authGuard } from './common-ui/auth.guard';
+import { guestGuard } from './common-ui/guest.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'auth/sign-up', pathMatch: 'full' },
@@ -16,7 +17,8 @@ export const routes: Routes = [
         children: [
             { path: 'sign-up', component: SignUpPageComponent },
             { path: 'sign-in', component: SignInPageComponent }
-        ]
+        ],
+        canActivate: [guestGuard]
     },
     {
         path: 'workspace',
