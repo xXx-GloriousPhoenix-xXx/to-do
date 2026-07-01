@@ -10,7 +10,7 @@ public static class AuthExtensions
         this IServiceCollection services, IConfiguration configuration)
     {
         var jwtSection = configuration.GetSection("Jwt");
-        var secretKey = jwtSection["SecretKey"]!;
+        var secretKey = jwtSection["Secret"]!;
 
         services.AddAuthentication(options =>
         {

@@ -14,7 +14,7 @@ public class TokenGenerator(IConfiguration configuration) : ITokenGenerator
 
     public string GenerateAccessToken(Guid userId)
     {
-        var secretKey = _configuration["Jwt:SecretKey"]!;
+        var secretKey = _configuration["Jwt:Secret"]!;
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
