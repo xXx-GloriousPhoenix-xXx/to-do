@@ -1,0 +1,44 @@
+<form
+    class="flex flex-col gap-2 p-4 h-full"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+>
+    <h2 class="text-xl font-semibold">New Task</h2>
+
+    <app-form-input
+        label="Title"
+        placeholder="Enter title"
+        [control]="form.controls.title"
+    />
+
+    <app-form-input
+        label="Description"
+        placeholder="Enter description"
+        [control]="form.controls.description"
+    />
+
+    <app-form-input
+        label="Category"
+        placeholder="Enter category (e.g. Work, Personal)"
+        [control]="form.controls.category"
+    />
+
+    <label class="flex flex-col gap-1 text-sm">
+        <span class="ml-1">Complete until</span>
+        <input
+            type="datetime-local"
+            formControlName="completeUntil"
+            class="px-5 py-3 border border-black rounded-lg bg-white focus:outline-none"
+        />
+    </label>
+
+    <div class="flex gap-2 mt-auto">
+        <button
+            type="submit"
+            class="btn flex-1"
+            [disabled]="form.invalid || isLoading()"
+        >
+            {{ isLoading() ? 'Creating...' : 'Create' }}
+        </button>
+    </div>
+</form>

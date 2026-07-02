@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service, signal } from '@angular/core';
-import { TokenResponse } from '../interfaces/token-response.interface';
-import { SignUpRequest } from '../interfaces/sign-up-request.interface';
+import { TokenResponse } from '../interfaces/auth/token-response.interface';
+import { SignUpRequest } from '../interfaces/auth/sign-up-request.interface';
 import { tap } from 'rxjs';
-import { SignInRequest } from '../interfaces/sign-in-request.interface';
+import { SignInRequest } from '../interfaces/auth/sign-in-request.interface';
 import { CookieService } from 'ngx-cookie-service';
 
 @Service()
 export class AuthService {
     private baseUrl = 'http://localhost:10000/auth'
     private http = inject(HttpClient);
-    private cookies = inject(CookieService)
+    private cookies = inject(CookieService);
 
     private readonly ACCESS_TOKEN_KEY = 'access_token';
     private readonly REFRESH_TOKEN_KEY = 'refresh_token';

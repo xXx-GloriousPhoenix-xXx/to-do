@@ -1,0 +1,14 @@
+<label class="flex flex-col gap-1 text-sm">
+    @if (label()) {
+        <span class="ml-1">{{ label() }}</span>
+    }
+    <select
+        [ngModel]="value()"
+        (ngModelChange)="onSelectChange($event)"
+        class="px-5 py-3 border border-black rounded-lg bg-white focus:outline-none"
+    >
+        @for (option of options(); track option.value) {
+            <option [ngValue]="option.value">{{ option.label }}</option>
+        }
+    </select>
+</label>

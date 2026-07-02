@@ -1,0 +1,6 @@
+:host {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 12px;
+    flex-flow: column nowrap;
+}

@@ -26,7 +26,8 @@
           "type": "directive"
         },
         "@schematics/angular:pipe": {
-          "skipTests": true
+          "skipTests": true,
+          "typeSeparator": "."
         },
         "@schematics/angular:guard": {
           "skipTests": true,

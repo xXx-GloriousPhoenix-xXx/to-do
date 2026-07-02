@@ -1,0 +1,30 @@
+<header class="h-8 border-b border-black flex items-center justify-center">
+    <span>{{ todo().title }}</span>
+    <button class=""></button>
+    <button class=""></button>
+</header>
+<main class="flex flex-1">
+    <div class="flex w-full p-4">
+        <p>{{ todo().description }}</p>
+    </div>
+    <div class="w-8 flex flex-col items-center border-l-black border-l">
+        <a [routerLink]="['./todo', todo().id]">
+            <svg
+                icon="view"
+                viewBox="0 0 24 24"
+                class="size-6 text-black"
+            />
+        </a>
+        <button (click)="onDelete()">
+            <svg
+                icon="delete"
+                viewBox="0 0 24 24"
+                class="size-6"
+            />
+        </button>
+    </div>
+</main>
+<footer class="mt-auto h-8 border-t border-black flex items-center justify-between px-4">
+    <span>{{ todo().category }}</span>
+    <span>{{ todo().completeUntil | todoDate }}</span>
+</footer>

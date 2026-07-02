@@ -1,0 +1,82 @@
+@if (isLoading()) {
+    <div class="flex items-center justify-center h-full">
+        <span>Loading...</span>
+    </div>
+}
+@else if (todo()) {
+    <form
+        class="flex flex-col gap-2 p-4 h-full"
+        [formGroup]="form"
+        (ngSubmit)="saveChanges()"
+    >
+        <header class="flex items-center justify-between mb-2">
+            @if (!isEditing()) {
+                <h2 class="text-xl">{{ todo()!.title }}</h2>
+                <div class="flex gap-2">
+                    <a class="btn" routerLink="/workspace">Return</a>
+                    <button type="button" (click)="startEditing()" class="btn">
+                        Edit
+                    </button>
+                    <button type="button" (click)="deleteTodo()" class="btn bg-(--danger-color)!">
+                        Delete
+                    </button>
+                </div>
+            } @else {
+                <h2 class="text-xl">Edit Task</h2>
+                <div class="flex gap-2">
+                    <button
+                        type="submit"
+                        class="btn"
+                        [disabled]="form.invalid || isSaving()"
+                    >
+                        {{ isSaving() ? 'Saving...' : 'Save' }}
+                    </button>
+                    <button type="button" (click)="cancelEditing()" class="btn">
+                        Cancel
+                    </button>
+                </div>
+            }
+        </header>
+
+        @if (!isEditing()) {
+            <p class="text-sm">{{ todo()!.description }}</p>
+
+            <div class="flex gap-4 mt-auto text-sm">
+                <span class="border border-black rounded px-2 py-0.5">
+                    {{ todo()!.category }}
+                </span>
+                <span>{{ todo()!.completeUntil | todoDate }}</span>
+                <span [class.line-through]="todo()!.isCompleted">
+                    {{ todo()!.isCompleted ? 'Completed' : 'Active' }}
+                </span>
+            </div>
+        } @else {
+            <app-form-input
+                label="Title"
+                placeholder="Enter title"
+                [control]="form.controls.title"
+            />
+
+            <app-form-input
+                label="Description"
+                placeholder="Enter description"
+                [control]="form.controls.description"
+            />
+
+            <app-form-input
+                label="Category"
+                placeholder="Enter category (e.g. Work, Personal)"
+                [control]="form.controls.category"
+            />
+
+            <label class="flex flex-col gap-1 text-sm">
+                <span class="ml-1">Complete until</span>
+                <input
+                    type="datetime-local"
+                    formControlName="completeUntil"
+                    class="px-5 py-3 border border-black rounded-lg bg-white focus:outline-none"
+                />
+            </label>
+        }
+    </form>
+}

@@ -20,6 +20,8 @@ app-root {
     --second-color: #cadefc;
     --third-color: #c3bef0;
     --fourth-color: #cca8e9;
+    --dark-color: #777777;
+    --danger-color: #FFBBBB;
 }
 
 .icon {
@@ -30,7 +32,6 @@ app-root {
 .btn {
     font-family: "Amaranth", sans-serif;
     border: 1px solid var(--second-color);
-    border-radius: 2px;
     background: var(--first-color);
     padding: 10px 20px;
     font-weight: 400;

@@ -1,9 +1,9 @@
 .input {
     display: block;
-    border: 1px solid var(--first-color);
-    border-radius: 2px;
+    border: 1px solid black;
+    border-radius: var(--radius-lg);
     padding: 12px 20px;
-    background: var(--second-color);
+    background: white;
     color: black;
     outline: none;
     font-weight: 400;

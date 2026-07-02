@@ -1,1 +1,5 @@
-<p>todo-page works!</p>
+@if (isCreateMode()) {
+    <app-create-todo (created)="onCreated()" />
+} @else {
+    <app-edit-todo [todoId]="todoId()!" (deleted)="onDeleted()" />
+}

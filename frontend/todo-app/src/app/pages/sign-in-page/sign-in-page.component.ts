@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../data/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
-import { SignInForm } from '../../data/interfaces/sign-in-form.interface';
+import { SignInForm } from '../../data/interfaces/auth/sign-in-form.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormInputComponent } from "../../common-ui/form-input/form-input.component";
 

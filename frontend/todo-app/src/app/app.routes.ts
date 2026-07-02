@@ -25,7 +25,15 @@ export const routes: Routes = [
         component: WorkspaceOutletComponent,
         children: [
             { path: '', component: WorkspacePageComponent },
-            { path: 'todo/:id', component: TodoPageComponent }
+
+            { 
+                path: 'todo',
+                children: [
+                    { path: 'create', component: TodoPageComponent },
+                    { path: ':id', component: TodoPageComponent },
+                ]
+            },
+
         ],
         canActivate: [authGuard]
     },
