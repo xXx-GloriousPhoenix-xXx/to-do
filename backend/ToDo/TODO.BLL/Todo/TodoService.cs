@@ -23,6 +23,9 @@ public class TodoService(
         var entity = _mapper.Map<TodoEntity>(dto);
         entity.AuthorId = authorId;
 
+        if (string.IsNullOrWhiteSpace(entity.Category))
+            entity.Category = "Default";
+
         var created = await _todoRepository.AddAsync(entity);
         return _mapper.Map<GetTodoDTO>(created);
     }
@@ -70,6 +73,14 @@ public class TodoService(
         return _mapper.Map<GetTodoDTO>(entity);
     }
 
+    public async Task<IEnumerable<string>> GetCategoriesAsync(Guid userId)
+    {
+        _ = await _userRepository.GetByIdAsync(userId)
+            ?? throw new NotFoundException("User not found");
+
+        return await _todoRepository.GetCategoriesByUserIdAsync(userId);
+    }
+
     public async Task UpdateAsync(Guid authorId, Guid todoId, UpdateTodoDTO dto)
     {
         _ = await _userRepository.GetByIdAsync(authorId)
@@ -83,6 +94,10 @@ public class TodoService(
 
         _mapper.Map(dto, entity);
         entity.UpdatedAt = DateTime.UtcNow;
+
+        if (string.IsNullOrWhiteSpace(entity.Category))
+            entity.Category = "Default";
+
         await _todoRepository.UpdateAsync(entity);
     }
 }

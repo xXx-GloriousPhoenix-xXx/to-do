@@ -11,4 +11,6 @@ public interface ITodoRepository : IBaseRepository<TodoEntity>
         TodoSorter? sorter = null,
         int pageNumber = 1,
         int pageSize = 10);
+
+    Task<IEnumerable<string>> GetCategoriesByUserIdAsync(Guid userId);
 }

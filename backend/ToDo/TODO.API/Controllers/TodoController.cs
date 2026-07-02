@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TODO.Interfaces.Common;
+using TODO.Interfaces.Common.CustomException;
 using TODO.Interfaces.Todo;
 using TODO.Interfaces.Todo.DTO;
 
@@ -16,11 +17,11 @@ public class TodoController(ITodoService todoService) : ControllerBase
     public async Task<ActionResult<PagedResponse<GetTodoDTO>>> GetAll(
         [FromQuery] TodoFilter? filter,
         [FromQuery] TodoSorter? sorter,
-        [FromQuery] int page = 1,
+        [FromQuery] int pageNumber = 1,
         [FromQuery] int pageSize = 10)
     {
         var userId = GetUserId();
-        var result = await _todoService.GetAllAsync(userId, filter, sorter, page, pageSize);
+        var result = await _todoService.GetAllAsync(userId, filter, sorter, pageNumber, pageSize);
         return Ok(result);
     }
 
@@ -56,9 +57,19 @@ public class TodoController(ITodoService todoService) : ControllerBase
         return NoContent();
     }
 
+    [HttpGet("categories")]
+    public async Task<ActionResult<IEnumerable<string>>> GetCategories()
+    {
+        var userId = GetUserId();
+        var result = await _todoService.GetCategoriesAsync(userId);
+        return Ok(result);
+    }
+
     private Guid GetUserId()
     {
-        var idClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        return Guid.Parse(idClaim!);
+        var idClaim = User.FindFirst(ClaimTypes.NameIdentifier)
+            ?? throw new UnauthorizedException("Unauthorized");
+
+        return Guid.Parse(idClaim.Value);
     }
 }

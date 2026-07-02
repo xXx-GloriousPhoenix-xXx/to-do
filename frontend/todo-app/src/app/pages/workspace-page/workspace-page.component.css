@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 4px;
+    height: 100%;
+}
+
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.filter-select {
+    padding: 4px;
+}

@@ -1,0 +1,50 @@
+<section class="flex flex-col w-4/5 gap-1">
+    <div class="grid grid-cols-3 grid-rows-2 gap-4 flex-1 rounded-xl border border-(--dark-color) bg-(--first-color) p-4">
+        @for (todo of todos(); track todo.id) {
+            <app-todo
+                [todo]="todo"
+                (deleted)="deleteTodo($event)"
+            />
+        }
+        <app-todo-placeholder />
+    </div>
+    <div
+        class="flex h-12 rounded-xl border border-(--dark-color) items-center justify-center gap-4 bg-(--second-color)"
+        [class.is-hidden]="!hasPagination()"
+    >
+        <button
+            class="text-black size-8 cursor-pointer transition-opacity"
+            [class.opacity-30]="!hasPrevious() || isLoading()"
+            [class.cursor-not-allowed]="!hasPrevious() || isLoading()"
+            [disabled]="!hasPrevious() || isLoading()"
+            (click)="onPrevious()"
+        >
+            <svg icon="left-arrow" viewBox="0 0 24 24" />
+        </button>
+        
+        <span class="w-16 h-7 text-center border border-black flex items-center justify-center rounded-xl">
+            {{ currentPage() }}
+        </span>
+        
+        <button
+            class="text-black size-8 cursor-pointer transition-opacity"
+            [class.opacity-30]="!hasNext() || isLoading()"
+            [class.cursor-not-allowed]="!hasNext() || isLoading()"
+            [disabled]="!hasNext() || isLoading()"
+            (click)="onNext()"
+        >
+            <svg icon="right-arrow" viewBox="0 0 24 24" />
+        </button>
+    </div>
+</section>
+<app-todo-filter
+    class="w-1/5"
+    [categories]="categories()"
+    [(selectedCategory)]="selectedCategory"
+    [(isCompleted)]="isCompleted"
+    [(completeUntilFrom)]="completeUntilFrom"
+    [(completeUntilTo)]="completeUntilTo"
+    [(sortField)]="sortField"
+    [(sortDirection)]="sortDirection"
+    (filterChanged)="onFilterChange()"
+/>

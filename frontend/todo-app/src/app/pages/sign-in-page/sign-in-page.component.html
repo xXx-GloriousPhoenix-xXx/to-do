@@ -1,0 +1,26 @@
+<form
+    class="flex flex-col gap-4 w-full"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+>
+    <h1 class="text-5xl mb-16 text-center">Sign In</h1>
+
+    <app-form-input
+        label="Username or Email"
+        placeholder="Enter username or email"
+        [control]="form.controls.usernameOrEmail"
+    />
+
+    <app-form-input
+        label="Password"
+        placeholder="Enter password"
+        type="password"
+        [control]="form.controls.password"
+    />
+
+    <button class="btn" type="submit">Sign In</button>
+    <p class="text-center mt-auto">
+        Don't have an account yet?
+        <a class="link" routerLink="/auth/sign-up">Sign Up</a>
+    </p>
+</form>

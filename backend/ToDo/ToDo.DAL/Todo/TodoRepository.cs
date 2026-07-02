@@ -44,10 +44,16 @@ public class TodoRepository(TodoDBContext context)
                 query = query.Where(td => td.IsCompleted == isCompleted);
 
             if (completeUntilFrom is not null)
-                query = query.Where(td => td.CompleteUntil >= completeUntilFrom);
+            {
+                var utcFrom = DateTime.SpecifyKind(completeUntilFrom.Value, DateTimeKind.Utc);
+                query = query.Where(td => td.CompleteUntil >= utcFrom);
+            }
 
             if (completeUntilTo is not null)
-                query = query.Where(td => td.CompleteUntil <= completeUntilTo);
+            {
+                var utcTo = DateTime.SpecifyKind(completeUntilTo.Value, DateTimeKind.Utc);
+                query = query.Where(td => td.CompleteUntil <= utcTo);
+            }
         }
 
         if (sorter is not null)
@@ -78,5 +84,16 @@ public class TodoRepository(TodoDBContext context)
             PageNumber = pageNumber,
             PageSize = pageSize
         };
+    }
+
+    public async Task<IEnumerable<string>> GetCategoriesByUserIdAsync(Guid userId)
+    {
+        return await _context.Todos
+            .AsNoTracking()
+            .Where(td => td.AuthorId == userId)
+            .Select(td => td.Category)
+            .Distinct()
+            .OrderBy(c => c)
+            .ToListAsync();
     }
 }

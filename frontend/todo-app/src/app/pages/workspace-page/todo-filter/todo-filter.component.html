@@ -1,0 +1,56 @@
+<aside class="rounded-xl border border-(--dark-color) bg-(--third-color) h-full flex flex-col p-4 gap-2">
+    <app-select
+        label="Category"
+        [options]="categoryOptions()"
+        [(value)]="selectedCategory"
+        (valueChange)="onFilterChange()"
+    />
+
+    <app-select
+        label="Status"
+        [options]="statusOptions"
+        [(value)]="isCompleted"
+        (valueChange)="onFilterChange()"
+    />
+
+    <label class="flex flex-col gap-1 text-sm w-full">
+        <span class="ml-1">Complete from</span>
+        <input
+            type="date"
+            [ngModel]="completeUntilFrom()"
+            (ngModelChange)="completeUntilFrom.set($event); onFilterChange()"
+            class="px-5 py-3 border border-black rounded-lg bg-white focus:outline-none"
+        />
+    </label>
+
+    <label class="flex flex-col gap-1 text-sm w-full">
+        <span class="ml-1">Complete to</span>
+        <input
+            type="date"
+            [ngModel]="completeUntilTo()"
+            (ngModelChange)="completeUntilTo.set($event); onFilterChange()"
+            class="px-5 py-3 border border-black rounded-lg bg-white focus:outline-none"
+        />
+    </label>
+
+    <app-select
+        label="Sort by"
+        [options]="sortFieldOptions"
+        [(value)]="sortField"
+        (valueChange)="onFilterChange()"
+    />
+
+    <app-select
+        label="Direction"
+        [options]="sortDirectionOptions"
+        [(value)]="sortDirection"
+        (valueChange)="onFilterChange()"
+    />
+
+    <button
+        class="btn mt-auto rounded-xl border-(--dark-color)!"
+        (click)="resetFilters()"
+    >
+        Reset filters
+    </button>
+</aside>

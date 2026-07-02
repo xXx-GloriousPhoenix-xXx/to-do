@@ -1,0 +1,37 @@
+.input {
+    display: block;
+    border: 1px solid black;
+    border-radius: var(--radius-lg);
+    padding: 12px 20px;
+    background: white;
+    color: black;
+    outline: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: "Amaranth", sans-serif;
+    margin-top: 8px;
+    width: 100%;
+    position: relative;
+}
+
+.hide-icon {
+    left: 0;
+    width: 19px;
+    height: 16px;
+}
+
+.password-hide-btn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--first-color);
+    transform: translateY(-10%);
+
+    &.active {
+        color: black;
+    }
+}

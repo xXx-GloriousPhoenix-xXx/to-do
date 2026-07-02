@@ -10,7 +10,7 @@ public static class AuthExtensions
         this IServiceCollection services, IConfiguration configuration)
     {
         var jwtSection = configuration.GetSection("Jwt");
-        var secretKey = jwtSection["SecretKey"]!;
+        var secretKey = jwtSection["Secret"]!;
 
         services.AddAuthentication(options =>
         {
@@ -19,6 +19,7 @@ public static class AuthExtensions
         })
         .AddJwtBearer(options =>
         {
+            options.MapInboundClaims = false;
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,

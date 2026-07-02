@@ -15,4 +15,5 @@ public interface ITodoService
     Task<GetTodoDTO> CreateAsync(Guid authorId, CreateTodoDTO dto);
     Task UpdateAsync(Guid authorId, Guid todoId, UpdateTodoDTO dto);
     Task DeleteAsync(Guid authorId, Guid todoId);
+    Task<IEnumerable<string>> GetCategoriesAsync(Guid userId);
 }
