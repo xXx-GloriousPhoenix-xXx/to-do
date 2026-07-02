@@ -1,7 +1,10 @@
 <section class="flex flex-col w-4/5 gap-1">
     <div class="grid grid-cols-3 grid-rows-2 gap-4 flex-1 rounded-xl border border-(--dark-color) bg-(--first-color) p-4">
         @for (todo of todos(); track todo.id) {
-            <app-todo [todo]="todo" />
+            <app-todo
+                [todo]="todo"
+                (deleted)="deleteTodo($event)"
+            />
         }
         <app-todo-placeholder />
     </div>

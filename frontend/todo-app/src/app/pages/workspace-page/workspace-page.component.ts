@@ -116,4 +116,28 @@ export class WorkspacePageComponent {
         this.sortDirection.set(SortDirection.Descending);
         this.currentPage.set(1);
     }
+
+    deleteTodo(id: string) {
+        this.todoService.delete(id).subscribe({
+            next: () => {
+                if (this.todos().length === 1 && this.currentPage() > 1) {
+                    this.currentPage.update(p => p - 1);
+                } else {
+                    this.loadTodos(this.currentPage(), this.pageSize(), {
+                        filter: {
+                            category: this.selectedCategory(),
+                            isCompleted: this.isCompleted(),
+                            completeUntilFrom: this.completeUntilFrom(),
+                            completeUntilTo: this.completeUntilTo()
+                        },
+                        sorter: {
+                            field: this.sortField(),
+                            direction: this.sortDirection()
+                        }
+                    });
+                }
+            },
+            error: (err) => console.error("Failed to delete todo:", err)
+        });
+    }
 }
