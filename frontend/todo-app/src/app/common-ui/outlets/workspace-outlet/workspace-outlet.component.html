@@ -1,11 +1,14 @@
-<header class="bg-(--second-color) border border-(--dark-color) flex justify-end items-center p-4 rounded-xl">
-    <a routerLink="/profile">
+<header class="bg-(--second-color) border border-(--dark-color) flex justify-end items-center py-4 px-6 rounded-xl">
+    <button
+        class="cursor-pointer"
+        (click)="signOut()"
+    >
         <svg
-            icon="avatar-placeholder"
-            class="w-16 h-16 border-(--dark-color) border rounded-full"
-            viewBox="20 24 128 128"
+            icon="sign-out"
+            class="size-10"
+            viewBox="0 0 24 24"
         />
-    </a>
+    </button>
 </header>
 <main>
     <router-outlet />

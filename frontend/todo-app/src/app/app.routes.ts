@@ -5,7 +5,6 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { WorkspacePageComponent } from './pages/workspace-page/workspace-page.component';
 import { WorkspaceOutletComponent } from './common-ui/outlets/workspace-outlet/workspace-outlet.component';
 import { TodoPageComponent } from './pages/todo-page/todo-page.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { authGuard } from './common-ui/auth.guard';
 import { guestGuard } from './common-ui/guest.guard';
 
@@ -35,11 +34,6 @@ export const routes: Routes = [
             },
 
         ],
-        canActivate: [authGuard]
-    },
-    {
-        path: 'profile',
-        component: ProfilePageComponent,
         canActivate: [authGuard]
     }
 ];

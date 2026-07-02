@@ -8,7 +8,7 @@ let isRefreshing = false;
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
-    if (req.url.includes('/auth/')) {
+    if (req.url.includes('/auth/') && !req.url.includes('/auth/sign-out')) {
         return next(req);
     }
 
